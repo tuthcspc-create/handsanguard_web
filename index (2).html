@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HandSanGuard — Thiết bị giám sát rửa tay thông minh</title>
+  <meta name="description" content="HandSanGuard giúp giám sát tuân thủ rửa tay tại khu sản xuất, bệnh viện, bếp công nghiệp. Phát hiện theo thời gian thực, cảnh báo tức thì, báo cáo chi tiết." />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="HandSanGuard — Giám sát rửa tay thông minh" />
+  <meta property="og:description" content="Theo dõi tuân thủ rửa tay theo thời gian thực, cảnh báo và báo cáo tự động." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://placehold.co/1200x630/png?text=HandSanGuard" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: #11162a;
+      --muted:#7a88a8;
+      --text:#eef2ff;
+      --brand:#00d4ff;
+      --brand-2:#7c5cff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background: radial-gradient(1200px 800px at 10% 10%, #0b1b40 0%, var(--bg) 45%), radial-gradient(800px 600px at 90% 0%, #181038 0%, var(--bg) 40%); color:var(--text)}
+    a{color:inherit}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;background:rgba(11,16,32,.6);backdrop-filter:blur(10px);border-bottom:1px solid #1d2747;z-index:20}
+    .nav{display:flex;align-items:center;justify-content:space-between; height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand-badge{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:grid;place-items:center;color:#001018;font-weight:900}
+    .nav a{opacity:.9;text-decoration:none;margin-left:18px;font-weight:500}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:14px;padding:12px 18px; font-weight:600; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#001018; cursor:pointer; box-shadow:0 10px 30px rgba(0, 212, 255,.25)}
+    .btn.secondary{background:#1d2747;color:var(--text);box-shadow:none;border:1px solid #29335a}
+
+    /* Hero */
+    .hero{padding:80px 0 40px; position:relative; overflow:hidden}
+    .hero h1{font-size:42px; line-height:1.1; margin:0 0 14px}
+    .hero p{color:var(--muted); font-size:18px; margin:0 0 28px}
+    .hero-ill{position:relative;display:grid;grid-template-columns:1.2fr .8fr; gap:36px; align-items:center}
+    .hero-card{background:linear-gradient(180deg,rgba(124,92,255,.15),rgba(0,0,0,0)); border:1px solid #2a2f54; border-radius:24px; padding:20px}
+    .screen{background:#030617;border:1px solid #263055;border-radius:16px; overflow:hidden}
+    .screen img{display:block;width:100%; height:auto}
+    .hero .badges{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+    .badge{font-size:12px;padding:6px 10px;background:#141b36;border:1px solid #263055;border-radius:999px;color:#b9c2e5}
+
+    /* Sections */
+    section{padding:72px 0;border-top:1px solid #1d2747}
+    h2{font-size:28px;margin:0 0 8px}
+    .sub{color:var(--muted);margin:0 0 28px}
+
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){
+      .hero-ill{grid-template-columns:1fr}
+      .grid.cols-3,.grid.cols-2{grid-template-columns:1fr}
+      .hero h1{font-size:34px}
+    }
+
+    .card{background:linear-gradient(180deg,rgba(0,212,255,.06),rgba(0,0,0,0)); border:1px solid #24335a; border-radius:18px; padding:18px}
+    .card h3{margin:0 0 6px; font-size:18px}
+    .muted{color:var(--muted)}
+    .check{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#001018;font-weight:900;margin-right:8px}
+
+    .specs{width:100%;border-collapse:collapse;border:1px solid #28365e;border-radius:12px; overflow:hidden}
+    .specs th,.specs td{padding:12px 14px;border-bottom:1px solid #28365e}
+    .specs th{text-align:left;color:#b9c2e5;background:#0d1533}
+
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .plan{border:1px solid #28365e;border-radius:18px;padding:20px;background:linear-gradient(180deg,rgba(0,212,255,.06),rgba(0,0,0,0))}
+    .plan h3{margin:0;font-size:20px}
+    .price{font-size:32px;font-weight:800;margin:10px 0}
+    .plan ul{padding-left:18px;margin:10px 0 0;color:#c4ccee}
+
+    footer{padding:40px 0;color:#8fa0c7}
+    .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #1d2747;padding-top:20px}
+    .tiny{font-size:12px;color:#7a88a8}
+
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px dashed #2b3a66;border-radius:999px;color:#a8b3d6}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:#0d1533;border:1px solid #2b3a66;border-radius:6px;padding:2px 6px}
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "HandSanGuard",
+      "description": "Thiết bị giám sát tuân thủ rửa tay theo thời gian thực, tích hợp cảnh báo và báo cáo.",
+      "brand": {"@type":"Brand","name":"HandSanGuard"},
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "VND",
+        "price": "0",
+        "availability": "https://schema.org/PreOrder",
+        "url": "#mua"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge">H</div>
+        HandSanGuard
+      </div>
+      <nav>
+        <a href="#tinh-nang">Tính năng</a>
+        <a href="#cach-hoat-dong">Cách hoạt động</a>
+        <a href="#thong-so">Thông số</a>
+        <a href="#bang-gia">Giá</a>
+        <a href="#lien-he" class="btn" style="margin-left:18px">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-ill">
+      <div>
+        <div class="pill">Sản phẩm mới • <span class="kbd">v1.0</span></div>
+        <h1>Giám sát rửa tay <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">theo thời gian thực</span></h1>
+        <p>Phù hợp cho khu sản xuất, nhà máy thực phẩm, bệnh viện, bếp công nghiệp. Phát hiện động tác rửa tay, nhắc nhở khi không tuân thủ và tạo báo cáo tự động.</p>
+        <div class="badges">
+          <span class="badge">AI Vision</span>
+          <span class="badge">Cảnh báo tức thì</span>
+          <span class="badge">Bảng điều khiển</span>
+          <span class="badge">On-premises/Cloud</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn" href="#demo">Xem demo</a>
+          <a class="btn secondary" href="#lien-he">Nhận báo giá</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="screen">
+          <img alt="Ảnh minh hoạ dashboard HandSanGuard" src="https://placehold.co/900x520/png?text=HandSanGuard+Dashboard" />
+        </div>
+        <p class="tiny" style="margin-top:10px">*Thay ảnh dashboard thật của bạn vào đây (PNG/JPG)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tinh-nang">
+    <div class="container">
+      <h2>Tính năng nổi bật</h2>
+      <p class="sub">Thiết kế cho môi trường sản xuất & y tế — bền bỉ, chính xác, dễ triển khai.</p>
+      <div class="grid cols-3">
+        <div class="card"><h3><span class="check">✓</span> Nhận diện thao tác</h3><p class="muted">Theo dõi 6 bước rửa tay theo chuẩn, tính điểm tuân thủ theo ca/khu vực.</p></div>
+        <div class="card"><h3><span class="check">✓</span> Cảnh báo đa kênh</h3><p class="muted">Loa/buzzer, đèn, Telegram/Zalo, dashboard khi phát hiện không rửa tay.</p></div>
+        <div class="card"><h3><span class="check">✓</span> Báo cáo & Audit</h3><p class="muted">Xuất báo cáo PDF/CSV theo ngày/tuần/tháng; lưu vết phục vụ kiểm định.</p></div>
+        <div class="card"><h3><span class="check">✓</span> Triển khai linh hoạt</h3><p class="muted">Edge (ESP32/RPi) hoặc Cloud; hoạt động ổn định cả khi mất mạng cục bộ.</p></div>
+        <div class="card"><h3><span class="check">✓</span> Tích hợp</h3><p class="muted">Kết nối cổng, cửa từ, chấm công, API nội bộ (REST/MQTT/Modbus Gateway).</p></div>
+        <div class="card"><h3><span class="check">✓</span> Bảo mật</h3><p class="muted">Ẩn danh khuôn mặt, TLS, phân quyền người dùng, nhật ký truy cập.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cach-hoat-dong">
+    <div class="container">
+      <h2>Cách hoạt động</h2>
+      <p class="sub">Lắp đặt camera tại bồn rửa tay → mô hình AI đánh giá thao tác → ghi nhận & cảnh báo.</p>
+      <div class="grid cols-3">
+        <div class="card"><h3>1) Thu nhận</h3><p class="muted">Camera/ESP32-CAM hoặc IP cam gửi khung hình thời gian thực.</p></div>
+        <div class="card"><h3>2) Phân tích</h3><p class="muted">AI/Computer Vision xác định bước rửa tay, tính điểm và thời lượng.</p></div>
+        <div class="card"><h3>3) Ghi nhận & cảnh báo</h3><p class="muted">Đẩy sự kiện lên dashboard, bật loa/đèn, gửi thông báo cho quản lý.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="thong-so">
+    <div class="container">
+      <h2>Thông số kỹ thuật</h2>
+      <p class="sub">Tuỳ chọn linh kiện theo ngân sách, tương thích hệ thống sẵn có.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <table class="specs">
+            <tr><th>Hạng mục</th><th>Mô tả</th></tr>
+            <tr><td>MCU/SBC</td><td>ESP32-WROVER / Raspberry Pi 4</td></tr>
+            <tr><td>Camera</td><td>ESP32-CAM / USB cam / IP cam (RTSP)</td></tr>
+            <tr><td>Kết nối</td><td>Wi‑Fi 2.4GHz / Ethernet</td></tr>
+            <tr><td>Nguồn</td><td>5V–12V DC, ~5–15W</td></tr>
+            <tr><td>Phần mềm</td><td>Dashboard Web, API REST/MQTT</td></tr>
+            <tr><td>Bảo mật</td><td>TLS, phân quyền, ẩn danh khuôn mặt</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3 id="demo">Video/Demo</h3>
+          <p class="muted">Nhúng link YouTube hoặc hình GIF demo (thay src bên dưới).</p>
+          <div class="screen" style="aspect-ratio:16/9">
+            <img alt="Demo HandSanGuard" src="https://placehold.co/960x540/png?text=Demo+Video+Here" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bang-gia">
+    <div class="container">
+      <h2>Bảng giá dự kiến</h2>
+      <p class="sub">Tuỳ theo số điểm rửa tay & tích hợp. Liên hệ để nhận báo giá chi tiết.</p>
+      <div class="pricing">
+        <div class="plan">
+          <h3>Demo</h3>
+          <div class="price">0đ</div>
+          <ul>
+            <li>1 điểm rửa tay</li>
+            <li>Dashboard cơ bản</li>
+            <li>Không tích hợp thiết bị</li>
+          </ul>
+        </div>
+        <div class="plan" style="border-color:#5cc9ff">
+          <h3>Starter</h3>
+          <div class="price">Liên hệ</div>
+          <ul>
+            <li>1–3 điểm rửa tay</li>
+            <li>Cảnh báo loa/đèn</li>
+            <li>Báo cáo tháng</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <h3>Pro</h3>
+          <div class="price">Liên hệ</div>
+          <ul>
+            <li>4–10+ điểm rửa tay</li>
+            <li>Tích hợp cổng/chấm công</li>
+            <li>Hỗ trợ SLA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lien-he">
+    <div class="container">
+      <h2>Liên hệ</h2>
+      <p class="sub">Bạn cần demo hoặc báo giá? Nhắn mình nhé.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="muted">Email: <a href="mailto:contact@handsanguard.local">contact@handsanguard.local</a><br/>Zalo/Phone: 09xx xxx xxx</p>
+          <p class="tiny">*Gợi ý: dùng formspree / Google Forms để nhận form liên hệ nhanh.</p>
+        </div>
+        <div class="card">
+          <form onsubmit="alert('Cảm ơn bạn!');return false;">
+            <div style="display:grid;gap:10px">
+              <input required placeholder="Họ tên" style="padding:12px;border-radius:10px;border:1px solid #2b3a66;background:#0d1533;color:var(--text)" />
+              <input required type="email" placeholder="Email" style="padding:12px;border-radius:10px;border:1px solid #2b3a66;background:#0d1533;color:var(--text)" />
+              <textarea required placeholder="Nhu cầu của bạn" rows="4" style="padding:12px;border-radius:10px;border:1px solid #2b3a66;background:#0d1533;color:var(--text)"></textarea>
+              <button class="btn" id="mua">Gửi yêu cầu</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="y"></span> HandSanGuard</div>
+      <div class="tiny">Made with ❤️ | Thay logo & thông tin công ty tại phần header/footer.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
